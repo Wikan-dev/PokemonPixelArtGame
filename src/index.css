@@ -1,1 +1,24 @@
 @import "tailwindcss";
+@font-face {
+    font-family: pixel;
+    src: url(./assets/Font/PixelifySans.ttf);
+}
+.pixel {
+    font-family: pixel;
+}
+
+@font-face {
+    font-family: jersey;
+    src: url(./assets/Font/Jersey15-Regular.ttf);
+}
+.pixel1 {
+    font-family: jersey;
+}
+
+.text-outline {
+  text-shadow: 
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+}
