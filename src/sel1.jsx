@@ -1,6 +1,8 @@
 import homeImg from "./assets/home-bg.png";
 import { useState } from "react";
 import data from "./data/pokemon.json"
+import { Link } from "react-router-dom";
+import { Buffer } from "buffer";
 
 const Sel = () => {
     const [selected, setSelected] = useState(null);
@@ -17,7 +19,7 @@ const Sel = () => {
                     ))} */}
                     {data.pokemons.map((poke, idx) => (
                     <div key={idx} className="flex flex-col items-center cursor-pointer" onMouseEnter={() => setSelected(poke)} onMouseLeave={() => setSelected(null)}>
-                        <img src={poke.image} alt={`Pokemon ${idx}`} className="w-28 h-auto  opacity-50 hover:opacity-100"/>
+                        <Link to={`/pixel-art/${encodeURIComponent(poke.image)}`} state={{ colors : poke.color}}><img src={poke.image} alt={`Pokemon ${idx}`} className="w-28 h-auto  opacity-50 hover:opacity-100"/></Link>
                     </div>
                     ))}
                 </div>

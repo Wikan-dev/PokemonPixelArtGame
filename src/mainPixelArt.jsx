@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
+import { Link, useParams, useLocation } from "react-router-dom";
 import logo from './assets/pokepixel.png';
 import horizon1 from './assets/horizon-1.png'
+import horizonGif from './assets/horizonGif.gif';
 
 const Pixel = ({ hover, click, pixelColor, pixels, setPixels}) => {
     // const [color, setColor] = useState(Array(count).fill(false));
     // console.log(color);
+    const [changeId, setChangeId] = useState([]);
 
     function changeColor(i) {
         if (hover == true) {
@@ -13,6 +16,12 @@ const Pixel = ({ hover, click, pixelColor, pixels, setPixels}) => {
         }   else {
             return;
         }
+
+        setChangeId((prev) =>
+            prev.includes(i) ? prev : [...prev, i]
+        );
+
+        console.log(`Div ${i + 1} berubah jadi warna`)
     }
 
     function changeColorClick(i) {
@@ -22,6 +31,12 @@ const Pixel = ({ hover, click, pixelColor, pixels, setPixels}) => {
         } else {
             return;
         }
+
+        setChangeId((prev) =>
+            prev.includes(i) ? prev : [...prev, i]
+        );
+
+        console.log(`Div ${i + 1} berubah jadi warna`)
     }
 
     
@@ -49,8 +64,12 @@ const PixelArt = () => {
     const [click, setClick] = useState(false);  
     const [pixelCheck, setPixelCheck] = useState(false);
     const [pixelColor, setPixelColor] = useState('');
-    const [pixels, setPixels] = useState(Array(512).fill('#00000000'));
-    const color = ["#000000", "#ffffff", "#82c6f2", "#b2c6d9", "#ffb545", "#cf8b57", "#80806a", "#80806a", "#82c5f23b"];
+    const [pixels, setPixels] = useState(Array(512).fill('#82c5f28b'));
+    const { reff } = useParams();
+    const { state } = useLocation();
+    // const color = colorReff;
+    const imageURl = decodeURIComponent(reff);
+    let color = state?.colors || [];
 
     function handleHover() {
         if (hover != true) {
@@ -79,7 +98,7 @@ const PixelArt = () => {
     }
 
     function handleReset() {
-        setPixels(Array(512).fill('#82c5f23b'));
+        setPixels(Array(512).fill('#82c5f28b'));
     }
 
     useEffect(() => {
@@ -121,10 +140,13 @@ const PixelArt = () => {
     //         // console.log("click is: " + click);
     //     }
     // }, [hover, click]);
+    // console.log(colorReff);
     return (
         <div className="bg-gray-500 p-5">
             <img src={horizon1} alt="horizon" className="absolute w-full left-0 top-0 z-0" />
+            <img src={horizonGif} className="absolute w-full left-0 top-36 h-[80vh] object-cover" alt="" />
             <img src={logo} alt="logo" className="w-50 relative z-10" />
+            <img src={reff} alt=""  className="absolute z-30"/>
             <div className="flex flex-row-reverse gap-10 -mt-10 justify-start mr-7 mb-5 z-10 relative">
                 <div className=" flex gap-5">
                 <button onClick={handleHover} className={`${hover ? 'bg-white text-black' : 'bg-black text-white'} hover:scale-110 bg-black outline-2 w-20 h-10 text-[20px] rounded-lg pixel1`}>hover</button>
@@ -133,7 +155,7 @@ const PixelArt = () => {
             </div>
             <div className="flex flex-row gap-2">
             {color.map((col, i) => (
-                <div key={i} onClick={() => getColor(col)} className="w-10 h-10 outline-2 flex justify-center pt-2 font-bold relative z-20 rounded-sm" style={{ backgroundColor : col, color : col === '#ffffff' ? 'black' : col === '#00000000' ? 'black' : 'white', outline : col === '#00000000' ?  "2px solid black" : '#00000000'}}>{i +1}
+                <div key={i} onClick={() => getColor(col)} className="w-10 h-10 outline-2 flex justify-center pt-2 font-bold relative z-20 rounded-sm" style={{ backgroundColor : col, color : col === '#ffffff' ? 'black' : col === '#00000000' ? 'black' : 'white', outline : col === '#00000000' ?  "2px solid black" : '1px solid white'}}>{i +1}
                  {i === 8 && (
                     <div className="absolute w-10 top-5 z-10 h-[2px] bg-red-500 rotate-45"></div>
                  )}

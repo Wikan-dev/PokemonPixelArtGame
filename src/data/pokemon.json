@@ -3,12 +3,14 @@
         {
             "image" : "../public/Frame1.png",
             "des" : "Wingull, the ocean's minstrel. Clad in snow and sapphire, its melody rides on sea winds, an emblem of freedom over endless shores, cliffs, and the broad azure sea. This Pokemon calls to dreamers who find their muse in the freedom of the ocean's expanse.",
-            "id" : 1
+            "id" : 1,
+            "color" : ["#ffffff", "#80806a", "#000000", "#b2c6d9", "#2197ff", "#ffb545", "#cf8b57", "#525252", "#00000000" ]
         },
         {
             "image": "../public/Frame2.png",
             "des": "test",
-            "id": 2
+            "id": 2,
+            "color": ["#ffb009", "#1b71ff", "#fe830a", "#000000", "#ffffff", "#828181", "#5194ff", "#ffdd15", "#00000000"]
         },
         {
             "image": "../public/Frame3.png",
