@@ -1,5 +1,6 @@
 import homeImg from "./assets/home-bg.png";
 import { useState } from "react";
+import data from './data/pokemon.json'
 
 const Musicsel = () => {
     const [selected, setSelected] = useState(null);
