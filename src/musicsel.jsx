@@ -1,23 +1,22 @@
 import homeImg from "./assets/home-bg.png";
 import { useState } from "react";
-import data from "./data/pokemon.json"
 
-const Sel = () => {
+const Musicsel = () => {
     const [selected, setSelected] = useState(null);
         return (
         <div className="relative w-full h-screen overflow-hidden">
             <img src={homeImg} alt="backgound Image" className="w-full h-[100vh] object-cover"/>
             <div className="flex flex-col items-center gap-6 p-6 min-h-screen absolute inset-0 mt-20">
-                <h1 className="pixel1 text-[50px] text-white mr-70 text-outline">Select Pokemon</h1>
+                <h1 className="pixel1 text-[50px] text-white mr-70 text-outline">Select Music</h1>
                 <div className="flex gap-10">
                     {/* {pokemons.map((poke, idx) => (
                     <div key={idx} className="flex flex-col items-center cursor-pointer" onMouseEnter={() => setSelected(poke)} onMouseLeave={() => setSelected(null)}>
                         <img src={selected === poke ? poke.image : poke.imageDim} alt={`Pokemon ${idx}`} className="w-24 h-24"/>
                     </div>
                     ))} */}
-                    {data.pokemons.map((poke, idx) => (
+                    {data.music.map((mus, idx) => (
                     <div key={idx} className="flex flex-col items-center cursor-pointer" onMouseEnter={() => setSelected(poke)} onMouseLeave={() => setSelected(null)}>
-                        <img src={poke.image} alt={`Pokemon ${idx}`} className="w-28 h-auto  opacity-50 hover:opacity-100"/>
+                        <img src={mus.image} alt={`Pokemon ${idx}`} className="w-28 h-auto  opacity-50 hover:opacity-100"/>
                     </div>
                     ))}
                 </div>
@@ -30,4 +29,4 @@ const Sel = () => {
     )
 }
 
-export default Sel
+export default Musicsel
