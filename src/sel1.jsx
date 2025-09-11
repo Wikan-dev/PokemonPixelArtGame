@@ -4,28 +4,7 @@ import { useState } from "react";
 const Sel = () => {
     const [selected, setSelected] = useState(null);
 
-    const pokemons = [
-        {
-            image: "/Frame1.png",
-            des: "Wingull, the ocean's minstrel. Clad in snow and sapphire, its melody rides on sea winds, an emblem of freedom over endless shores, cliffs, and the broad azure sea. This Pokemon calls to dreamers who find their muse in the freedom of the ocean's expanse.",
-            id: "1"
-        },
-        {
-            image: "/Frame2.png",
-            des: "test",
-            id: "2"
-        },
-        {
-            image: "/Frame3.png",
-            des: "test",
-            id: "3"
-        },
-        {
-            image: "/Frame4.png",
-            des: "test",
-            id: "4"
-        },
-    ];
+    
         return (
         <div className="relative w-full h-screen overflow-hidden">
             <img src={homeImg} alt="backgound Image" className="w-full h-[100vh] object-cover"/>
