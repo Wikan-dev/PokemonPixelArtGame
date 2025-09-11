@@ -3,36 +3,43 @@
         {
             "image" : "../public/Frame1.png",
             "des" : "Wingull, the ocean's minstrel. Clad in snow and sapphire, its melody rides on sea winds, an emblem of freedom over endless shores, cliffs, and the broad azure sea. This Pokemon calls to dreamers who find their muse in the freedom of the ocean's expanse.",
-            "id" : 1
+            "id" : 1,
+            "colour" : ["#ffffff", "#80806a", "#000000", "#b2c6d9", "#2197ff", "#ffb545", "#cf8b57", "#525252", "#00000000"]
         },
         {
             "image": "../public/Frame2.png",
-            "des": "test",
-            "id": 2
+            "des": "Magnemite, sphere of enigma, bathed in iron and lightning, hums with silent, pulsating power, a sentinel of the unseen magnetic realms. This Pokemon attracts inquisitive thinkers who effortlessly dance to the rhythm of the universe's hidden pulses.test",
+            "id": 2,
+            "colour" : ["#ffb009", "#1b71ff", "#fe830a", "#000000", "#ffffff", "#828181", "#5194ff", "#ffdd15", "#00000000"]
         },
         {
             "image": "../public/Frame3.png",
-            "des": "test",
-            "id": 3
+            "des": "Dragonite, behemoth of the skies, gilded with the strength of ancient tales. Its might, both gentle and fierce, ushers in harmony within the tempest. This Pokemon is destined for the brave, those with hearts big enough to hold both power and kindness.",
+            "id": 3,
+            "colour" : ["#fff70d", "#ffffff", "#000000", "#888ff2", "#888ff2", ""]
+
         },
         {
             "image": "../public/Frame4.png",
-            "des": "test",
+            "des": "Beedrill, a winged warrior, cloaked in amber and obsidian. Its fearsome dance, the rhythm of survival, echoes the age-old tale of life’s fierce beauty. This Pokemon beckons the brave who find strength and beauty in life's most formidable challenges.",
             "id": 4
         }
     ],
     "music" : [
         {
             "image": "../public/music.png",
-            "id": 5
+            "id": 5,
+            "link": "https://youtu.be/KeQ9TIjOPm8?t=181"
         },
         {
             "image": "../public/music1.png",
-            "id": 6
+            "id": 6,
+            "link": "https://www.youtube.com/watch?v=xiUhNx24iZs&ab_channel=Ivoryyy"
         },
         {
             "image": "../public/music2.png",
-            "id": 7
+            "id": 7,
+            "link": "https://open.spotify.com/playlist/4KbwIjPyeAWQ79mdVAn2K7?si=9a5cbc05153c403c"
         }
     ]
 }
