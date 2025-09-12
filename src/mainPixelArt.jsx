@@ -12,7 +12,7 @@ const Pixel = ({ hover, click, pixelColor, pixels, setPixels}) => {
     function changeColor(i) {
         if (hover == true) {
             setPixels((prev) => prev.map((val, idx) => idx === i ? pixelColor : val));
-            console.log('Color changed to black');
+            // console.log('Color changed to black');
         }   else {
             return;
         }
@@ -21,7 +21,7 @@ const Pixel = ({ hover, click, pixelColor, pixels, setPixels}) => {
             prev.includes(i) ? prev : [...prev, i]
         );
 
-        console.log(`Div ${i + 1} berubah jadi warna`)
+        // console.log(`Div ${i + 1} berubah jadi warna`)
     }
 
     function changeColorClick(i) {
@@ -64,7 +64,6 @@ const PixelArt = () => {
     const [click, setClick] = useState(false);  
     const [pixelCheck, setPixelCheck] = useState(false);
     const [pixelColor, setPixelColor] = useState('');
-    const [selectedPokemon, setSetelectedPokemon] = useState(null);
     const [pixels, setPixels] = useState(Array(512).fill('#82c5f28b'));
     const { reff } = useParams();
     const { state } = useLocation();
@@ -72,6 +71,7 @@ const PixelArt = () => {
     const imageURl = decodeURIComponent(reff);
     let color = state?.colors || [];
     let pokemon = state?.pokemon || [];
+    const [selectedPokemon, setSelectedPokemon] = useState(pokemon[0] || null);
 
     function handleHover() {
         if (hover != true) {
@@ -85,9 +85,11 @@ const PixelArt = () => {
 
     function getColor(col, i) {
         // const selectedColor = JSON.stringify(color);
-        setPixelColor(col);
-        setSetelectedPokemon(pokemon[i]);
-        console.log("pokemon muncul", pokemon[i]);
+        if (col !== '#00000000') {
+            setPixelColor(col);
+            setSelectedPokemon(pokemon[i]);
+            console.log("pokemon muncul", pokemon[i]);
+        }
     }
 
     function handleClick() {
@@ -119,7 +121,12 @@ const PixelArt = () => {
         function handleKeyDown(e) {
             const num = parseInt(e.key, 10);
             if (!isNaN(num) && num > 0 <= color.length) {
-                setPixelColor(color[num -1]);
+                const selectedColor = color[num - 1];
+                setPixelColor(selectedColor);
+                if (selectedColor !== '#00000000') {
+                    setSelectedPokemon(pokemon[num -1]);
+                }
+                
             }
         }
 
@@ -129,7 +136,7 @@ const PixelArt = () => {
             window.removeEventListener('keydown', handleMode);
             window.addEventListener('keydown', handleKeyDown);
         }
-    }, [hover, click, color]);
+    }, [hover, click, color, pokemon]);
 
     // useEffect(() => {
     //     // console.log('Hover state changed:', hover);
@@ -147,9 +154,9 @@ const PixelArt = () => {
     return (
         <div className="bg-gray-500 p-5">
             <img src={horizon1} alt="horizon" className="absolute w-full left-0 top-0 z-0" />
-            <img src={horizonGif} className="absolute w-full left-0 top-36 h-[80vh] object-cover" alt="" />
+            <img src={horizonGif} className="absolute w-full left-0 top-[146px] h-[80vh] object-cover" alt="" />
             <img src={logo} alt="logo" className="w-50 relative z-10" />
-            <img src={reff} alt=""  className="absolute z-30"/>
+            {/* <img src={reff} alt=""  className="absolute z-30"/> */}
             <div className="flex flex-row-reverse gap-10 -mt-10 justify-start mr-7 mb-5 z-10 relative">
                 <div className=" flex gap-5">
                 <button onClick={handleHover} className={`${hover ? 'bg-white text-black' : 'bg-black text-white'} hover:scale-110 bg-black outline-2 w-20 h-10 text-[20px] rounded-lg pixel1`}>hover</button>
@@ -158,7 +165,7 @@ const PixelArt = () => {
             </div>
             <div className="flex flex-row gap-2">
             {color.map((col, i) => (
-                <div key={i} onClick={() => getColor(col)} className="w-10 h-10 outline-2 flex justify-center pt-2 font-bold relative z-20 rounded-sm" style={{ backgroundColor : col, color : col === '#ffffff' ? 'black' : col === '#00000000' ? 'black' : 'white', outline : col === '#00000000' ?  "2px solid black" : '1px solid white'}}>{i +1}
+                <div key={i} onClick={() => getColor(col, i)} className="w-10 h-10 outline-2 flex justify-center pt-2 font-bold relative z-20 rounded-sm" style={{ backgroundColor : col, color : col === '#ffffff' ? 'black' : col === '#00000000' ? 'black' : 'white', outline : col === '#00000000' ?  "2px solid black" : '1px solid white'}}>{i +1}
                  {i === 8 && (
                     <div className="absolute w-10 top-5 z-10 h-[2px] bg-red-500 rotate-45"></div>
                  )}
@@ -167,11 +174,11 @@ const PixelArt = () => {
             {/* <div tabIndex={0} onKeyDown={handleMode} ></div> */}
             </div>
             </div>
-            <div className="flex justify-end relative z-20">
+            <div className="flex justify-between relative z-20 flex-row-reverse">
                 <Pixel hover={hover} click={click} count={512} pixelColor={pixelColor} pixels={pixels} setPixels={setPixels}/>
                 {selectedPokemon && (
                     <div>
-                        <img src={selectedPokemon} alt="pokemon" />
+                        <img src={selectedPokemon} alt="pokemon" className="w-100 relative top-60" />
                     </div>
                 )}
             </div>
