@@ -42,9 +42,9 @@ const Pixel = ({ hover, click, pixelColor, pixels, setPixels}) => {
     
 
     return (
-        <div className="flex gap-1 w-[1050px] flex-wrap">
+        <div className="flex gap-[3px] w-[1000px] flex-wrap">
             {pixels.map((color, i) => (
-                <div key={i} onClick={() => changeColorClick(i)} onMouseEnter={() => changeColor(i)} className={` outline-1 w-7 h-7`} style={{ backgroundColor : color || 'rgba(0, 0, 0, 100%)'}}></div>
+                <div key={i} onClick={() => changeColorClick(i)} onMouseEnter={() => changeColor(i)} className={` outline-1 outline-color-[#82c5f28b] w-7 h-7 cursor-pointer`} style={{ backgroundColor : color || 'rgba(0, 0, 0, 100%)'}}></div>
             ))}
         </div>
     )
@@ -59,17 +59,21 @@ const Pixel = ({ hover, click, pixelColor, pixels, setPixels}) => {
 //     )
 // }
 
+
+
 const PixelArt = () => {
     const [hover, setHover] = useState(true);
     const [click, setClick] = useState(false);  
     const [pixelCheck, setPixelCheck] = useState(false);
     const [pixelColor, setPixelColor] = useState('');
     const [pixels, setPixels] = useState(Array(512).fill('#82c5f28b'));
+    const [targetPixels, setTargetPixels] = useState([]);
+    const [isCompleted, setIsCompleted] = useState(false);
     const { reff } = useParams();
     const { state } = useLocation();
     // const color = colorReff;
     const imageURl = decodeURIComponent(reff);
-    let color = state?.colors || [];
+    let color = state?.color || [];
     let pokemon = state?.pokemon || [];
     const [selectedPokemon, setSelectedPokemon] = useState(pokemon[0] || null);
 
@@ -123,6 +127,7 @@ const PixelArt = () => {
             if (!isNaN(num) && num > 0 <= color.length) {
                 const selectedColor = color[num - 1];
                 setPixelColor(selectedColor);
+
                 if (selectedColor !== '#00000000') {
                     setSelectedPokemon(pokemon[num -1]);
                 }
@@ -130,13 +135,27 @@ const PixelArt = () => {
             }
         }
 
+        if (state?.image) {
+            getImagePixels(state.image, 32, 16).then((px) => {
+                setTargetPixels(px);
+            })
+        }
+
+        if (targetPixels.length > 0) {
+            const done = pixels.every((px, i) => px === targetPixels[i]);
+            setIsCompleted(done);
+            if (done) {
+                console.log("gambar sudah selesai")
+            }
+        }
+
         window.addEventListener('keydown', handleMode);
         window.addEventListener('keydown', handleKeyDown);
         return () => {
             window.removeEventListener('keydown', handleMode);
-            window.addEventListener('keydown', handleKeyDown);
+            window.removeEventListener('keydown', handleKeyDown);
         }
-    }, [hover, click, color, pokemon]);
+    }, [hover, click, color, pokemon, state, pixels, targetPixels]);
 
     // useEffect(() => {
     //     // console.log('Hover state changed:', hover);
@@ -151,34 +170,75 @@ const PixelArt = () => {
     //     }
     // }, [hover, click]);
     // console.log(colorReff);
+
+    function getImagePixels(imgSrc, width, height) {
+        return new Promise((resolve) => {
+            const img  = new Image();
+            img.src = imgSrc;
+            img.crossOrigin = "Annonymus";
+
+            img.onload = () => {
+                const canvas = document.createElement("canvas");
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, width, height);
+
+                const imageData = ctx.getImageData(0, 0, width, height).data;
+                const pixels = [];
+
+                for (let i = 0; i < imageData.length; i += 4) {
+                    const r = imageData[i].toString(16).padStart(2, "0");
+                    const g = imageData[i + 1].toString(16).padStart(2, "0");
+                    const b = imageData[i + 2].toString(16).padStart(2, "0");
+                    const a = imageData[i + 3] / 255;
+                    
+                    if (a === 0)  {
+                        pixels.push("#00000000");
+                    } else {
+                        pixels.push(`#${r}${g}${b}`)
+                    }
+                }
+                resolve(pixels);
+            }
+        })
+    }
+    
     return (
         <div className="bg-gray-500 p-5">
             <img src={horizon1} alt="horizon" className="absolute w-full left-0 top-0 z-0" />
             <img src={horizonGif} className="absolute w-full left-0 top-[146px] h-[80vh] object-cover" alt="" />
-            <img src={logo} alt="logo" className="w-50 relative z-10" />
+            <Link to='/' className="relative z-20"><img src={logo} alt="logo" className="w-50 relative z-10" /></Link>
             {/* <img src={reff} alt=""  className="absolute z-30"/> */}
             <div className="flex flex-row-reverse gap-10 -mt-10 justify-start mr-7 mb-5 z-10 relative">
-                <div className=" flex gap-5">
-                <button onClick={handleHover} className={`${hover ? 'bg-white text-black' : 'bg-black text-white'} hover:scale-110 bg-black outline-2 w-20 h-10 text-[20px] rounded-lg pixel1`}>hover</button>
-                <button onClick={handleClick} className={`${click ? 'bg-white text-black' : 'bg-black text-white'} text-black w-20 h-10 outline-2 text-[20px] rounded-lg pixel1`}>click</button>
-                {/* <button onClick={handleReset} className={`bg-red-500 text-white w-20 h-10 p-2  font-bold rounded-lg`}>reset</button> */}
+                <div className=" flex flex-col">
+                    <h1 className="pixel1 text-[30px]">Mode Space Bar</h1>
+                    <div className="flex-row flex gap-5 ">
+                        <button onClick={handleHover} className={`${hover ? 'bg-white text-black' : 'bg-black text-white'} hover:scale-110 bg-black outline-2 w-20 h-10 text-[20px] rounded-lg pixel1`}>hover</button>
+                    <button onClick={handleClick} className={`${click ? 'bg-white text-black' : 'bg-black text-white'} text-black w-20 h-10 outline-2 text-[20px] rounded-lg pixel1`}>click</button>
+                    </div>
+                    {/* <button onClick={handleReset} className={`bg-red-500 text-white w-20 h-10 p-2  font-bold rounded-lg`}>reset</button> */}
             </div>
-            <div className="flex flex-row gap-2">
+            <div>
+                <h1 className="pixel1 text-[30px]">Color number keys</h1>
+                <div className="flex flex-row gap-2">
             {color.map((col, i) => (
                 <div key={i} onClick={() => getColor(col, i)} className="w-10 h-10 outline-2 flex justify-center pt-2 font-bold relative z-20 rounded-sm" style={{ backgroundColor : col, color : col === '#ffffff' ? 'black' : col === '#00000000' ? 'black' : 'white', outline : col === '#00000000' ?  "2px solid black" : '1px solid white'}}>{i +1}
                  {i === 8 && (
-                    <div className="absolute w-10 top-5 z-10 h-[2px] bg-red-500 rotate-45"></div>
-                 )}
+                     <div className="absolute w-10 top-5 z-10 h-[2px] bg-red-500 rotate-45"></div>
+                    )}
                 </div>
             ))}
             {/* <div tabIndex={0} onKeyDown={handleMode} ></div> */}
             </div>
             </div>
+            <h1 className="pixel1 text-[20px] relative top-15">R to reset</h1>
+            </div>
             <div className="flex justify-between relative z-20 flex-row-reverse">
                 <Pixel hover={hover} click={click} count={512} pixelColor={pixelColor} pixels={pixels} setPixels={setPixels}/>
                 {selectedPokemon && (
                     <div>
-                        <img src={selectedPokemon} alt="pokemon" className="w-100 relative top-60" />
+                        <img src={selectedPokemon} alt="pokemon" className="w-100 relative top-30" />
                     </div>
                 )}
             </div>
