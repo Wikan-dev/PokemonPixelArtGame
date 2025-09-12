@@ -16,13 +16,14 @@
             "image": "../public/Frame3.png",
             "des": "Dragonite, behemoth of the skies, gilded with the strength of ancient tales. Its might, both gentle and fierce, ushers in harmony within the tempest. This Pokemon is destined for the brave, those with hearts big enough to hold both power and kindness.",
             "id": 3,
-            "colour" : ["#fff70d", "#ffffff", "#000000", "#888ff2", "#888ff2", ""]
+            "colour" : ["#fff70d", "#ffffff", "#000000", "#888ff2", "#c9cbff", "#ff421c", "#5c5c5c", "#ffd70f", "#00000000"]
 
         },
         {
             "image": "../public/Frame4.png",
             "des": "Beedrill, a winged warrior, cloaked in amber and obsidian. Its fearsome dance, the rhythm of survival, echoes the age-old tale of life’s fierce beauty. This Pokemon beckons the brave who find strength and beauty in life's most formidable challenges.",
-            "id": 4
+            "id": 4,
+            "colour": ["#ffffff", "#000000", "#545357", "#c0c0c0", "#808080", "#708090", "#db2024", "#0000cd", "#00000000"]
         }
     ],
     "music" : [
