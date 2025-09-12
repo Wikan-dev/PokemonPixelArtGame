@@ -19,7 +19,7 @@ const Sel = () => {
                     ))} */}
                     {data.pokemons.map((poke, idx) => (
                     <div key={idx} className="flex flex-col items-center cursor-pointer" onMouseEnter={() => setSelected(poke)} onMouseLeave={() => setSelected(null)}>
-                        <Link to={`/pixel-art/${encodeURIComponent(poke.image)}`} state={{ colors : poke.color}}><img src={poke.image} alt={`Pokemon ${idx}`} className="w-28 h-auto  opacity-50 hover:opacity-100"/></Link>
+                        <Link to={`/pixel-art/${encodeURIComponent(poke.image)}`} state={{ colors : poke.color, pokemon : poke["pokemon-color"]}}><img src={poke.image} alt={`Pokemon ${idx}`} className="w-28 h-auto  opacity-50 hover:opacity-100"/></Link>
                     </div>
                     ))}
                 </div>

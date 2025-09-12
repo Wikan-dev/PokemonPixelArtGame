@@ -27,7 +27,7 @@ const Pixel = ({ hover, click, pixelColor, pixels, setPixels}) => {
     function changeColorClick(i) {
         if (click == true) {
             setPixels((prev) => prev.map((val, idx) => idx === i ? pixelColor : val));
-            console.log('Color changed to black');
+            // console.log('Color changed to black');
         } else {
             return;
         }
@@ -36,7 +36,7 @@ const Pixel = ({ hover, click, pixelColor, pixels, setPixels}) => {
             prev.includes(i) ? prev : [...prev, i]
         );
 
-        console.log(`Div ${i + 1} berubah jadi warna`)
+        // console.log(`Div ${i + 1} berubah jadi warna`)
     }
 
     
@@ -64,12 +64,14 @@ const PixelArt = () => {
     const [click, setClick] = useState(false);  
     const [pixelCheck, setPixelCheck] = useState(false);
     const [pixelColor, setPixelColor] = useState('');
+    const [selectedPokemon, setSetelectedPokemon] = useState(null);
     const [pixels, setPixels] = useState(Array(512).fill('#82c5f28b'));
     const { reff } = useParams();
     const { state } = useLocation();
     // const color = colorReff;
     const imageURl = decodeURIComponent(reff);
     let color = state?.colors || [];
+    let pokemon = state?.pokemon || [];
 
     function handleHover() {
         if (hover != true) {
@@ -81,10 +83,11 @@ const PixelArt = () => {
         }
     }
 
-    function getColor(col) {
+    function getColor(col, i) {
         // const selectedColor = JSON.stringify(color);
         setPixelColor(col);
-        
+        setSetelectedPokemon(pokemon[i]);
+        console.log("pokemon muncul", pokemon[i]);
     }
 
     function handleClick() {
@@ -166,6 +169,11 @@ const PixelArt = () => {
             </div>
             <div className="flex justify-end relative z-20">
                 <Pixel hover={hover} click={click} count={512} pixelColor={pixelColor} pixels={pixels} setPixels={setPixels}/>
+                {selectedPokemon && (
+                    <div>
+                        <img src={selectedPokemon} alt="pokemon" />
+                    </div>
+                )}
             </div>
             {/* <PixelColor pixelColor={'#6912f7ff'}/> */}
         </div>
