@@ -9,7 +9,7 @@ import Test from "./test"
 const App = () => {
   return (
     <div>
-      <BrowserRouter>
+      <BrowserRouter basename="Pokemon pixel-art">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/pixel-art" element={<PixelArt />} />
