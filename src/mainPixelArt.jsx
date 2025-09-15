@@ -231,7 +231,7 @@ const PixelArt = () => {
     return (
         <div className="bg-gray-500 p-5 relative">
             {pickPokemon ? (
-                <div className="absolute z-30">
+                <div className="">
                     <Test onSelectPokemon={(poke) => {
                         setPokemonColour(poke['Pokemon-colour']);
                         setCurrentIndex(0);
