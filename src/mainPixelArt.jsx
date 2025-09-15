@@ -76,7 +76,6 @@ const PixelArt = () => {
     const { state } = useLocation();
     const [hover, setHover] = useState(true);
     const [click, setClick] = useState(false);  
-    const [pixelColor, setPixelColor] = useState('');
     const [pixels, setPixels] = useState(Array(512).fill('#82c5f28b'));
     const [targetPixels, setTargetPixels] = useState([]);
     const [pickPokemon, setPickPokemon] = useState(false);
@@ -90,6 +89,7 @@ const PixelArt = () => {
     const imageURl = decodeURIComponent(reff);
     let color = state?.color || [];
     let pokemon = state?.pokemon ?? [];
+    const [pixelColor, setPixelColor] = useState(color[0] || '');
     const [pokemonColour, setPokemonColour] = useState(pokemon || []);
     const selectedPokemon = pokemonColour[currentIndex] || null;
     // const [selectedPokemon, setSelectedPokemon] = useState(pokemon[0] || null);
@@ -161,7 +161,7 @@ const PixelArt = () => {
         if (state) {
             setSelectedId(state.pokemonId ?? 0);
             setPokemonColour(state.pokemon ?? []);
-            setPixelColor(state.color?.[0] ?? '')
+            // setPixelColor(state.color?.[0] ?? '')
         }
 
         if (targetPixels.length > 0) {
@@ -236,6 +236,7 @@ const PixelArt = () => {
                         setPokemonColour(poke['Pokemon-colour']);
                         setCurrentIndex(0);
                         setPickPokemon(false);
+                        handleReset();
                     }} />
                 </div>
             ) : null}
