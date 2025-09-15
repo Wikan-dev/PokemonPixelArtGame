@@ -1,4 +1,11 @@
 @import "tailwindcss";
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+/* custom css ... */
+
 @font-face {
     font-family: pixel;
     src: url(./assets/Font/PixelifySans.ttf);
@@ -21,4 +28,17 @@
      1px -1px 0 #000,
     -1px  1px 0 #000,
      1px  1px 0 #000;
+}
+
+@keyframes move {
+    0% {
+        transform : translate(0);
+    }
+    100% {
+        transform: translate(100px);
+    }
+}
+
+.animation-move {
+    animation: move 1s ease forwards;
 }

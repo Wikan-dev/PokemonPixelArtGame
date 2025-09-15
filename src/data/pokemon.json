@@ -1,64 +1,47 @@
 {
     "pokemons" : [
         {
-            "image" : "../public/Frame1.png",
+            "image" : "/Frame1.png",
             "des" : "Magnemite, sphere of enigma, bathed in iron and lightning, hums with silent, pulsating power, a sentinel of the unseen magnetic realms. This Pokemon attracts inquisitive thinkers who effortlessly dance to the rhythm of the universe's hidden pulses.",
             "id" : 1,
             "colour" : ["#000000", "#ffffff", "#c0c0c0", "#808080", "#545357", "#708090", "#ff0000", "#0000cd", "#00000000"],
-<<<<<<< HEAD
-            "Pokemon-colour" : ["../public/pokemons/pokemon1/activeColor=1.png", "../public/pokemons/pokemon1/activeColor=2.png", "../public/pokemons/pokemon1/activeColor=3.png", "../public/pokemons/pokemon1/activeColor=4.png", "../public/pokemons/pokemon1/activeColor=5.png", "../public/pokemons/pokemon1/activeColor=6.png", "../public/pokemons/pokemon1/activeColor=7.png", "../public/pokemons/pokemon1/activeColor=8.png"]
-=======
-            "Pokemon-colour" : ["../public/pokemons/pokemon1/activeColor=1.png", "..public/pokemons/pokemon1/activeColor=2.png", "..public/pokemons/pokemon1/activeColor=3.png", "..public/pokemons/pokemon1/activeColor=4.png", "..public/pokemons/pokemon1/activeColor=5.png", "..public/pokemons/pokemon1/activeColor=6.png", "..public/pokemons/pokemon1/activeColor=7.png", "..public/pokemons/pokemon1/activeColor=8.png"]
->>>>>>> 53874e0e869caa521c6358fb9257b087f5191314
+            "Pokemon-colour" : ["/pokemons/pokemon1/activeColor=1.png", "/pokemons/pokemon1/activeColor=2.png", "/pokemons/pokemon1/activeColor=3.png", "/pokemons/pokemon1/activeColor=4.png", "/pokemons/pokemon1/activeColor=5.png", "/pokemons/pokemon1/activeColor=6.png", "/pokemons/pokemon1/activeColor=7.png", "/pokemons/pokemon1/activeColor=8.png"]
         },
         {
-            "image": "../public/Frame2.png",
+            "image": "/Frame2.png",
             "des": "Wingull, the ocean's minstrel. Clad in snow and sapphire, its melody rides on sea winds, an emblem of freedom over endless shores, cliffs, and the broad azure sea. This Pokemon calls to dreamers who find their muse in the freedom of the ocean's expanse.",
             "id": 2,
             "colour" : ["#000000", "#ffffff", "#2699ff", "#b2c6d9", "#ffb545", "#707061", "#707061", "#525252", "#00000000"],
-<<<<<<< HEAD
-            "Pokemon-colour" : ["../public/pokemons/pokemon2/activeColor=1.png", "../public/pokemons/pokemon2/activeColor=2.png", "../public/pokemons/pokemon2/activeColor=3.png", "../public/pokemons/pokemon2/activeColor=4.png", "../public/pokemons/pokemon2/activeColor=5.png", "../public/pokemons/pokemon2/activeColor=6.png", "../public/pokemons/pokemon2/activeColor=7.png", "../public/pokemons/pokemon2/activeColor=8.png"]
-=======
-            "Pokemon-colour" : ["../public/pokemons/pokemon2/activeColor=1.png", "..public/pokemons/pokemon2/activeColor=2.png", "..public/pokemons/pokemon2/activeColor=3.png", "..public/pokemons/pokemon2/activeColor=4.png", "..public/pokemons/pokemon2/activeColor=5.png", "..public/pokemons/pokemon2/activeColor=6.png", "..public/pokemons/pokemon2/activeColor=7.png", "..public/pokemons/pokemon2/activeColor=8.png"]
->>>>>>> 53874e0e869caa521c6358fb9257b087f5191314
+            "Pokemon-colour" : ["/pokemons/pokemon2/activeColor=1.png", "/pokemons/pokemon2/activeColor=2.png", "/pokemons/pokemon2/activeColor=3.png", "/pokemons/pokemon2/activeColor=4.png", "/pokemons/pokemon2/activeColor=5.png", "/pokemons/pokemon2/activeColor=6.png", "/pokemons/pokemon2/activeColor=7.png", "/pokemons/pokemon2/activeColor=8.png"]
         },
         {
-            "image": "../public/Frame3.png",
+            "image": "/Frame3.png",
             "des": "Dragonite, behemoth of the skies, gilded with the strength of ancient tales. Its might, both gentle and fierce, ushers in harmony within the tempest. This Pokemon is destined for the brave, those with hearts big enough to hold both power and kindness.",
             "id": 3,
             "colour" : ["#000000", "#ffffff", "#fe830a", "#ffb009", "#ffdd15", "#1b71ff", "#5194ff", "#828181", "#00000000"],
-<<<<<<< HEAD
-            "Pokemon-colour" : ["../public/pokemons/pokemon3/activeColor=1.png", "../public/pokemons/pokemon3/activeColor=2.png", "../public/pokemons/pokemon3/activeColor=3.png", "../public/pokemons/pokemon3/activeColor=4.png", "../public/pokemons/pokemon3/activeColor=5.png", "../public/pokemons/pokemon3/activeColor=6.png", "../public/pokemons/pokemon3/activeColor=7.png", "../public/pokemons/pokemon3/activeColor=8.png"]
-=======
-            "Pokemon-colour" : ["../public/pokemons/pokemon3/activeColor=1.png", "..public/pokemons/pokemon3/activeColor=2.png", "..public/pokemons/pokemon3/activeColor=3.png", "..public/pokemons/pokemon3/activeColor=4.png", "..public/pokemons/pokemon3/activeColor=5.png", "..public/pokemons/pokemon3/activeColor=6.png", "..public/pokemons/pokemon3/activeColor=7.png", "..public/pokemons/pokemon3/activeColor=8.png"]
->>>>>>> 53874e0e869caa521c6358fb9257b087f5191314
+            "Pokemon-colour" : ["/pokemons/pokemon3/activeColor=1.png", "/pokemons/pokemon3/activeColor=2.png", "/pokemons/pokemon3/activeColor=3.png", "/pokemons/pokemon3/activeColor=4.png", "/pokemons/pokemon3/activeColor=5.png", "/pokemons/pokemon3/activeColor=6.png", "/pokemons/pokemon3/activeColor=7.png", "/pokemons/pokemon3/activeColor=8.png"]
         },
         {
-            "image": "../public/Frame4.png",
+            "image": "/Frame4.png",
             "des": "Beedrill, a winged warrior, cloaked in amber and obsidian. Its fearsome dance, the rhythm of survival, echoes the age-old tale of life’s fierce beauty. This Pokemon beckons the brave who find strength and beauty in life's most formidable challenges.",
             "id": 4,
-<<<<<<< HEAD
             "colour": ["#000000", "#ffffff", "#fff70d", "#ffd70f", "#888ff2", "#c9cbff", "#ff421c", "#ff421c", "#00000000"],
-            "Pokemon-colour" : ["../public/pokemons/pokemon4/activeColor=1.png", "../public/pokemons/pokemon4/activeColor=2.png", "../public/pokemons/pokemon4/activeColor=3.png", "../public/pokemons/pokemon4/activeColor=4.png", "../public/pokemons/pokemon4/activeColor=5.png", "../public/pokemons/pokemon4/activeColor=6.png", "../public/pokemons/pokemon4/activeColor=7.png", "../public/pokemons/pokemon4/activeColor=8.png"]
-=======
-            "colour": ["#000000", "#ffffff", "#fff70d", "#ffd70f", "#888ff2", "#c9cbff", "#ff421c", "#5c5c5c", "#00000000"],
-            "Pokemon-colour" : ["../public/pokemons/pokemon4/activeColor=1.png", "..public/pokemons/pokemon4/activeColor=2.png", "..public/pokemons/pokemon4/activeColor=3.png", "..public/pokemons/pokemon4/activeColor=4.png", "..public/pokemons/pokemon4/activeColor=5.png", "..public/pokemons/pokemon4/activeColor=6.png", "..public/pokemons/pokemon4/activeColor=7.png", "..public/pokemons/pokemon4/activeColor=8.png"]
->>>>>>> 53874e0e869caa521c6358fb9257b087f5191314
+            "Pokemon-colour" : ["/pokemons/pokemon4/activeColor=1.png", "/pokemons/pokemon4/activeColor=2.png", "/pokemons/pokemon4/activeColor=3.png", "/pokemons/pokemon4/activeColor=4.png", "/pokemons/pokemon4/activeColor=5.png", "/pokemons/pokemon4/activeColor=6.png", "/pokemons/pokemon4/activeColor=7.png", "/pokemons/pokemon4/activeColor=8.png"]
         }
     ],
     "music" : [
         {
-            "image": "../public/music.png",
+            "image": "/music.png",
             "id": 5,
             "link": "https://youtu.be/KeQ9TIjOPm8?t=181"
         },
         {
-            "image": "../public/music1.png",
+            "image": "/music1.png",
             "id": 6,
             "link": "https://www.youtube.com/watch?v=xiUhNx24iZs&ab_channel=Ivoryyy"
         },
         {
-            "image": "../public/music2.png",
+            "image": "/music2.png",
             "id": 7,
             "link": "https://open.spotify.com/playlist/4KbwIjPyeAWQ79mdVAn2K7?si=9a5cbc05153c403c"
         }

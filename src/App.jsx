@@ -4,6 +4,7 @@ import PixelArt from './mainPixelArt'
 import Sel from './sel1'
 import Musicsel from "./musicsel"
 import Roadingu from "./roadingu"
+import Test from "./test"
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/sel" element={<Sel />} />
           <Route path="/musicsel" element={<Musicsel />} />
           <Route path="/roadingu" element={<Roadingu />} />
+          <Route path="/test" element={<Test />} />
         </Routes>
       </BrowserRouter>
     </div>

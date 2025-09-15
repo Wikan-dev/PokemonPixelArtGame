@@ -3,6 +3,9 @@ import { Link, useParams, useLocation } from "react-router-dom";
 import logo from './assets/pokepixel.png';
 import horizon1 from './assets/horizon-1.png'
 import horizonGif from './assets/horizonGif.gif';
+import ball from './assets/ball.svg';
+import data from './data/pokemon.json';
+import Test from "./test";
 
 const Pixel = ({ hover, click, pixelColor, pixels, setPixels}) => {
     // const [color, setColor] = useState(Array(count).fill(false));
@@ -13,6 +16,7 @@ const Pixel = ({ hover, click, pixelColor, pixels, setPixels}) => {
         if (hover == true) {
             setPixels((prev) => prev.map((val, idx) => idx === i ? pixelColor : val));
             // console.log('Color changed to black');
+            
         }   else {
             return;
         }
@@ -59,23 +63,36 @@ const Pixel = ({ hover, click, pixelColor, pixels, setPixels}) => {
 //     )
 // }
 
+const PokeBall = () => {
+    return (
+        <div>
+            <img src={ball} alt="balls" />
+        </div>
+    )
+}
 
 
 const PixelArt = () => {
+    const { state } = useLocation();
     const [hover, setHover] = useState(true);
     const [click, setClick] = useState(false);  
-    const [pixelCheck, setPixelCheck] = useState(false);
     const [pixelColor, setPixelColor] = useState('');
     const [pixels, setPixels] = useState(Array(512).fill('#82c5f28b'));
     const [targetPixels, setTargetPixels] = useState([]);
-    const [isCompleted, setIsCompleted] = useState(false);
+    const [pickPokemon, setPickPokemon] = useState(false);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const initialPokemonId = state?.pokemonId || 0;
+    const [selectedId, setSelectedId] = useState(initialPokemonId);
+    // const [pixelCheck, setPixelCheck] = useState(false);
+    // const [isCompleted, setIsCompleted] = useState(false);
     const { reff } = useParams();
-    const { state } = useLocation();
     // const color = colorReff;
     const imageURl = decodeURIComponent(reff);
     let color = state?.color || [];
-    let pokemon = state?.pokemon || [];
-    const [selectedPokemon, setSelectedPokemon] = useState(pokemon[0] || null);
+    let pokemon = state?.pokemon ?? [];
+    const [pokemonColour, setPokemonColour] = useState(pokemon || []);
+    const selectedPokemon = pokemonColour[currentIndex] || null;
+    // const [selectedPokemon, setSelectedPokemon] = useState(pokemon[0] || null);
 
     function handleHover() {
         if (hover != true) {
@@ -127,7 +144,7 @@ const PixelArt = () => {
             if (!isNaN(num) && num > 0 <= color.length) {
                 const selectedColor = color[num - 1];
                 setPixelColor(selectedColor);
-
+                
                 if (selectedColor !== '#00000000') {
                     setSelectedPokemon(pokemon[num -1]);
                 }
@@ -141,6 +158,12 @@ const PixelArt = () => {
             })
         }
 
+        if (state) {
+            setSelectedId(state.pokemonId ?? 0);
+            setPokemonColour(state.pokemon ?? []);
+            setPixelColor(state.color?.[0] ?? '')
+        }
+
         if (targetPixels.length > 0) {
             const done = pixels.every((px, i) => px === targetPixels[i]);
             setIsCompleted(done);
@@ -151,10 +174,11 @@ const PixelArt = () => {
 
         window.addEventListener('keydown', handleMode);
         window.addEventListener('keydown', handleKeyDown);
+
         return () => {
             window.removeEventListener('keydown', handleMode);
             window.removeEventListener('keydown', handleKeyDown);
-        }
+        }   
     }, [hover, click, color, pokemon, state, pixels, targetPixels]);
 
     // useEffect(() => {
@@ -205,7 +229,17 @@ const PixelArt = () => {
     }
     
     return (
-        <div className="bg-gray-500 p-5">
+        <div className="bg-gray-500 p-5 relative">
+            {pickPokemon ? (
+                <div className="absolute z-30">
+                    <Test onSelectPokemon={(poke) => {
+                        setPokemonColour(poke['Pokemon-colour']);
+                        setCurrentIndex(0);
+                        setPickPokemon(false);
+                    }} />
+                </div>
+            ) : null}
+
             <img src={horizon1} alt="horizon" className="absolute w-full left-0 top-0 z-0" />
             <img src={horizonGif} className="absolute w-full left-0 top-[146px] h-[80vh] object-cover" alt="" />
             <Link to='/' className="relative z-20"><img src={logo} alt="logo" className="w-50 relative z-10" /></Link>
@@ -232,17 +266,29 @@ const PixelArt = () => {
             {/* <div tabIndex={0} onKeyDown={handleMode} ></div> */}
             </div>
             </div>
-            <h1 className="pixel1 text-[20px] relative top-15">R to reset</h1>
+                    <h1 className="pixel1 text-[20px] relative top-15">R to reset</h1>
+            <div className="mr-4">
+                <h1 className="pixel1 text-[30px] ">Magmemite</h1>
+                <div className=" flex  h-10">
+                    {data.pokemons.map((item, idx) => (
+                    <div key={item.id} className={`${selectedId === idx ? 'opacity-100' : 'opacity-50'}`} onClick={() => {setPickPokemon(true); setSelectedId(item.id)}}>
+                        <PokeBall />
+                    </div>
+                ))}
             </div>
-            <div className="flex justify-between relative z-20 flex-row-reverse">
+            </div>
+            </div>
+            <div className="flex justify-between relative z-20 flex-row-reverse ">
                 <Pixel hover={hover} click={click} count={512} pixelColor={pixelColor} pixels={pixels} setPixels={setPixels}/>
                 {selectedPokemon && (
                     <div>
-                        <img src={selectedPokemon} alt="pokemon" className="w-100 relative top-30" />
+                        <img src={selectedPokemon} alt="pokemon" className="w-100 relative top-30 animate-move" />
                     </div>
                 )}
             </div>
             {/* <PixelColor pixelColor={'#6912f7ff'}/> */}
+
+            <button className="pixel1 absolute z-20 bg-white w-30 h-10 right-7 mt-5 ">fly pokemon</button>
         </div>
     )
 }
