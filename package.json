@@ -1,5 +1,6 @@
 {
   "name": "pokmonpixelart",
+  "homepage": "https://Wikan-dev.github.io/PokemonPixel-art/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -45,6 +46,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Wikan-dev/PokemonPixelArtGame/issues"
-  },
-  "homepage": "https://github.com/Wikan-dev/PokemonPixelArtGame#readme"
+  }
 }
