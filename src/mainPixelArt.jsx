@@ -48,7 +48,7 @@ const Pixel = ({ hover, click, pixelColor, pixels, setPixels}) => {
     return (
         <div className="flex gap-[3px] w-[1000px] flex-wrap">
             {pixels.map((color, i) => (
-                <div key={i} onClick={() => changeColorClick(i)} onMouseEnter={() => changeColor(i)} className={` outline-1 outline-color-[#82c5f28b] w-7 h-7 cursor-pointer`} style={{ backgroundColor : color || 'rgba(0, 0, 0, 100%)'}}></div>
+                <div key={i} onClick={() => changeColorClick(i)} onMouseEnter={() => changeColor(i)} className={` outline- outline-color-[#82c5f28b] w-7 h-7 cursor-pointer`} style={{ backgroundColor : color || 'rgba(0, 0, 0, 100%)'}}></div>
             ))}
         </div>
     )
@@ -71,6 +71,12 @@ const PokeBall = () => {
     )
 }
 
+// const Fly = () => {
+//     return (
+        
+//     )
+// }
+
 
 const PixelArt = () => {
     const { state } = useLocation();
@@ -80,6 +86,7 @@ const PixelArt = () => {
     const [targetPixels, setTargetPixels] = useState([]);
     const [pickPokemon, setPickPokemon] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [fly, setFly] = useState(false);
     const initialPokemonId = state?.pokemonId || 0;
     const [selectedId, setSelectedId] = useState(initialPokemonId);
     // const [pixelCheck, setPixelCheck] = useState(false);
@@ -146,7 +153,8 @@ const PixelArt = () => {
                 setPixelColor(selectedColor);
                 
                 if (selectedColor !== '#00000000') {
-                    setSelectedPokemon(pokemon[num -1]);
+                    setCurrentIndex(num -1);
+                    console.log("pokemon change")
                 }
                 
             }
@@ -180,6 +188,10 @@ const PixelArt = () => {
             window.removeEventListener('keydown', handleKeyDown);
         }   
     }, [hover, click, color, pokemon, state, pixels, targetPixels]);
+
+    function handleFly() {
+        setFly(!fly);
+    }
 
     // useEffect(() => {
     //     // console.log('Hover state changed:', hover);
@@ -244,6 +256,22 @@ const PixelArt = () => {
                 </div>
             ) : null}
 
+            {fly ? (
+                <div>
+                <div className="absolute z-100 w-full left-0 top-0">
+                    <div className="absolute z-100 scale-20 move w-auto h-auto">
+                        <Pixel hover={hover} click={click} count={512} pixelColor={pixelColor} pixels={pixels} setPixels={setPixels}/>
+                        <div className="bg-red-500 relative z-100 w-full h-full "></div>
+                    </div>
+                    <div className="opacity-100">
+                        <img src={horizon1} alt="horizon" className="absolute w-full left-0 top-0" />
+                        <img src={horizonGif} className="absolute w-full left-0 top-[146px] h-[80vh] object-cover" alt="" />
+                    </div>
+
+                </div>
+            </div>
+            ) : null}
+
             <img src={horizon1} alt="horizon" className="absolute w-full left-0 top-0 z-0" />
             <img src={horizonGif} className="absolute w-full left-0 top-[146px] h-[80vh] object-cover" alt="" />
             <Link to='/' className="relative z-20"><img src={logo} alt="logo" className="w-50 relative z-10" /></Link>
@@ -292,7 +320,7 @@ const PixelArt = () => {
             </div>
             {/* <PixelColor pixelColor={'#6912f7ff'}/> */}
 
-            <button className="pixel1 absolute z-20 bg-white w-30 h-10 right-7 mt-5 ">fly pokemon</button>
+            <button onClick={handleFly} className="pixel1 absolute z-200 bg-white w-30 h-10 right-7 mt-5 ">fly pokemon</button>
         </div>
     )
 }

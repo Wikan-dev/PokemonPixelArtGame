@@ -34,11 +34,14 @@
     0% {
         transform : translate(0);
     }
+    50% {
+        transform: translate(0, 1000px);
+    }
     100% {
-        transform: translate(100px);
+        transform: translate(0)
     }
 }
 
-.animation-move {
-    animation: move 1s ease forwards;
+.move {
+    animation: move 10s ease forwards infinite;
 }
