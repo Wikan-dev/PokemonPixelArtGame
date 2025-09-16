@@ -195,6 +195,9 @@ const PixelArt = () => {
     // }, [hover, click]);
     // console.log(colorReff);
 
+//     console.log("selectedPokemon path:", selectedPokemon);
+// console.log("Final src:", `${import.meta.env.BASE_URL}${selectedPokemon}`);
+
     function getImagePixels(imgSrc, width, height) {
         return new Promise((resolve) => {
             const img  = new Image();
@@ -271,7 +274,7 @@ const PixelArt = () => {
             <div className="mr-4">
                 <h1 className="pixel1 text-[30px] ">Magmemite</h1>
                 <div className=" flex  h-10">
-                    {data.pokemons.map((item, idx) => (
+                {data.pokemons.map((item, idx) => (
                     <div key={item.id} className={`${selectedId === idx ? 'opacity-100' : 'opacity-50'}`} onClick={() => {setPickPokemon(true); setSelectedId(item.id)}}>
                         <PokeBall />
                     </div>
@@ -283,7 +286,7 @@ const PixelArt = () => {
                 <Pixel hover={hover} click={click} count={512} pixelColor={pixelColor} pixels={pixels} setPixels={setPixels}/>
                 {selectedPokemon && (
                     <div>
-                        <img src={selectedPokemon} alt="pokemon" className="w-100 relative top-30 animate-move" />
+                        <img src={`${import.meta.env.BASE_URL}${selectedPokemon.replace(/^\//, '')}`} alt="pokemon" className="w-100 relative top-30 animate-move" />
                     </div>
                 )}
             </div>

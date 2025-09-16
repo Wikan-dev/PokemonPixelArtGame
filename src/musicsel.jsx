@@ -22,13 +22,13 @@ const Musicsel = () => {
                     {data.music.map((mus, idx) => (
                     <div key={idx} className="flex flex-col items-center cursor-pointer" onMouseEnter={() => setSelected(mus)} onMouseLeave={() => setSelected(null)}>
                         <a href={mus.link} target="_blank" rel="noopener noreferrer">
-                            <img src={mus.image} alt={`Pokemon ${idx}`} className="w-40 h-auto  opacity-50 hover:opacity-100"></img>
+                            <img src={import.meta.env.BASE_URL + mus.image.slice(1)} alt={`Pokemon ${idx}`} className="w-40 h-auto  opacity-50 hover:opacity-100"></img>
                         </a>
                     </div>
                     ))}
                 </div>
                 <div className="text-outline pixel1 text-[22px] text-white mt-6 bg-[#333333] rounded-l-lg p-4 w-[412px] min-h-[189px] mr-39">
-                    <img src="/public/Yapping.png" alt="Pfor tolkien" className="absolute ml-99 mt-[-16px]" />
+                    <img src={import.meta.env.BASE_URL + "Yapping.png"} alt="Pfor tolkien" className="absolute ml-99 mt-[-16px]" />
                     {<p className="w-90 text-justify">Let it be known far and wide: music, the mellifluous voice of the soul, is a wondrous and ethereal companion, a symphony of boundless delight and eternal enchantment.</p>}
                 </div>
                 <div className="cursor-pointer bg-white w-60 h-16 text-center text-[25px] border-3 border-[#808080] rounded-sm">
