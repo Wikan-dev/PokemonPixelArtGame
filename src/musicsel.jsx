@@ -11,8 +11,8 @@ const Musicsel = () => {
         return (
         <div className="relative w-full h-screen overflow-hidden">
             <img src={bggif} alt="backgound Image" className="w-full h-[100vh] object-cover"/>
-            <div className="flex flex-col items-center gap-6 p-6 min-h-screen absolute inset-0 mt-20">
-                <h1 className="pixel1 text-[50px] text-white mr-80 text-outline">Select Music</h1>
+            <div className="flex flex-col items-center gap-6 p-6 min-h-screen absolute inset-0">
+                <h1 className="pixel1 text-[50px] text-white text-outline">Select Music</h1>
                 <div className="flex gap-10">
                     {/* {pokemons.map((poke, idx) => (
                     <div key={idx} className="flex flex-col items-center cursor-pointer" onMouseEnter={() => setSelected(poke)} onMouseLeave={() => setSelected(null)}>
